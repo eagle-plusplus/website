@@ -23,19 +23,39 @@
         <button>Make a question</button>
     </a>
 
-    <button onclick="addParagraph()">Add Paragraph</button>
-    <script>
-        function addParagraph() {
-            // Create a new <p> element
-            var paragraph = document.createElement("p");
+    <div class="top-bar">
+        <h1>
+            My Forum
+        </h1>
+    </div>
+    <div class="main" style="border: 10px solid;">
+        <button onclick="addLinks()">Add Links</button>
+        <script>
+            function addLinks() {
+                <?php
+                $sql = "SELECT * FROM QUESTIONS";
+                $result = mysqli_query($conn, $sql);
 
-            // Set the PHP code as the content of the <p> element
-            paragraph.textContent = "<?php echo 'This is a PHP code'; ?>";
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $title = $row["title"];
+                        echo "var link = document.createElement('a');";
+                        echo "link.href = 'question-details.php?qid=" . $row["qid"] . "';";
+                        echo "link.textContent = '" . $title . "';";
+                        echo "document.body.appendChild(link);";
+                        echo "document.body.appendChild(document.createElement('br'));";
+                    }
+                } else {
+                    echo "var paragraph = document.createElement('p');";
+                    echo "paragraph.textContent = 'No results';";
+                    echo "document.body.appendChild(paragraph);";
+                }
+                ?>
+            }
+        </script>
+    </div>
+    
 
-            // Append the <p> element to the <body> element
-            document.body.appendChild(paragraph);
-        }
-    </script>
 </body>
 </html>
 
