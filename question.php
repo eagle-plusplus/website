@@ -18,10 +18,35 @@
         <textarea name="title" id="title" rows="1" cols="40"></textarea><br>
         
         <label for="message">Message:</label><br>
-        <textarea name="message" id="message" rows="4" cols="40"></textarea><br>
+        <textarea name="question" id="question" rows="4" cols="40"></textarea><br>
         
-        <button type="submit" name="submit">Submit</button>
+        <button type="submit" name="submit" value="submit">Submit Question</button>
+
+        <a href="question.php">
+            <button>Return</button>
+        </a>
     </form>
 
 </body>
 </html>
+
+<?php
+    if (isset($_POST["submit"])){
+        $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS);
+        $question = filter_input(INPUT_POST, "question", FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $uid = $_SESSION["id"];
+
+        if (empty($title)||empty($question)){
+            echo "You must fill both fields!";
+        }else{
+            $sql = "INSERT INTO QUESTIONS (uid, title, qtext)
+                    VALUES ('$uid', '$title', '$question')";
+
+            mysqli_query($conn, $sql);
+        }
+
+    }
+
+    mysqli_close($conn);
+?>

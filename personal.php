@@ -119,4 +119,6 @@
         }
     }
 
+    mysqli_close($conn);
+
 ?>
