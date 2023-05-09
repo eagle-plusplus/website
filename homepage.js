@@ -11,3 +11,7 @@ for (let i = 0; i < acc.length; i++) {
     } 
   });
 }
+
+function redirectToPage() {
+  window.location.href = "http://localhost/website/index.php";
+}
