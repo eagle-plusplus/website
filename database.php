@@ -13,8 +13,8 @@
     }
 
     if ($conn){
-        echo "<script>";
+        /*echo "<script>";
         echo "console.log('Connection with server has been established');";
-        echo "</script>";
+        echo "</script>";*/
     }
 ?>

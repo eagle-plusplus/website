@@ -23,6 +23,12 @@
         <button>Make a question</button>
     </a>
 
+    <br>
+
+    <a href="xmlmaker.php">
+        <button>Download data in XML</button>
+    </a>
+
     <div class="top-bar">
         <h1>
             My Forum
@@ -98,7 +104,7 @@
             }
             $sql .= " t.qdate LIKE '%$dates%'";
         }
-        
+
         echo $sql . "<br>";
 
         $result = mysqli_query($conn, $sql);

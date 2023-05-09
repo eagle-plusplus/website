@@ -41,6 +41,33 @@
             <button>Return</button>
         </a>
     </form>
+
+    <div class="answers">
+        <script>
+                window.onload = function() {
+                <?php
+                    $sql = "SELECT * FROM ANSWERS a JOIN USERS u ON a.uid = u.id WHERE a.qid = '$questionID'";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $text = $row["atext"];
+                            $username = $row["username"];
+                            echo "var paragraph = document.createElement('p');";
+                            echo "paragraph.textContent = 'User $username answered: $text';";
+                            echo "document.querySelector('.answers').appendChild(paragraph);";
+                            echo "document.querySelector('.answers').appendChild(document.createElement('br'));";
+                        }
+                    } else {
+                        echo "var paragraph = document.createElement('p');";
+                        echo "paragraph.textContent = 'No results';";
+                        echo "document.body.appendChild(paragraph);";
+                    }
+                ?>
+            }
+        </script>
+    </div>
+
 </body>
 </html>
 
