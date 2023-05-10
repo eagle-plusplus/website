@@ -11,30 +11,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mainpage</title>
+
+    <link rel="stylesheet" href="mainpage.css">
 </head>
 <body>
-    <a href="personal.php">
-        <button>Personal information</button>
-    </a>
 
-    <br>
+    <div class="main-buttons">
+        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+            <button type="submit" name="newq" >Make a question</button>
+        </form>
+    
+        <button type="button" onclick="window.location.href = 'personal.php';">Personal information</button>
 
-    <a href="question.php">
-        <button>Make a question</button>
-    </a>
+        <button type="button" onclick="window.location.href = 'xmlmaker.php';">Download data in XML</button>
 
-    <br>
-
-    <a href="xmlmaker.php">
-        <button>Download data in XML</button>
-    </a>
+    </div>
 
     <div class="top-bar">
         <h1>
             My Forum
         </h1>
     </div>
-    <div class="main" style="border: 10px solid;">
+    <div class="main">
         <script>
             window.onload = function() {
             <?php
@@ -75,6 +73,19 @@
 </html>
 
 <?php
+        $sid = $_SESSION["id"];
+        //echo $sid;
+
+        if (isset($_POST["newq"])){
+            if ($sid > 0){
+                header("Location: question.php");
+            }else{
+                echo "<script>";
+                echo "alert('You cannot ask a question as a visitor. Please Sign in.');";
+                echo "</script>";
+            }
+        }
+
     if (isset($_GET["search"])){
         $content = filter_input(INPUT_GET, "content", FILTER_SANITIZE_SPECIAL_CHARS);
         $users = filter_input(INPUT_GET, "users", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -105,7 +116,7 @@
             $sql .= " t.qdate LIKE '%$dates%'";
         }
 
-        echo $sql . "<br>";
+        //echo $sql . "<br>";
 
         $result = mysqli_query($conn, $sql);
 
@@ -113,14 +124,20 @@
             echo "<script>";
             echo "var mainDiv = document.querySelector('.main');";
             echo "mainDiv.innerHTML = '';"; // Clear existing content
-        
+            
+            $i = 1;
             while ($row = mysqli_fetch_assoc($result)) {
+                $username = $row["username"];
                 $title = $row["title"];
+                $date = $row["qdate"];
+                
                 echo "var link = document.createElement('a');";
                 echo "link.href = 'question-details.php?qid=" . $row["qid"] . "';";
-                echo "link.textContent = '" . $title . "';";
+                echo "link.textContent = '" . $i . ") (" . $date . ") The user " . $username . " asked: " . $title . "';";
                 echo "mainDiv.appendChild(link);";
                 echo "mainDiv.appendChild(document.createElement('br'));";
+
+                $i += 1;
             }
         
             echo "</script>";
@@ -138,4 +155,5 @@
     }
 
     mysqli_close($conn);
+    //session_destroy();
 ?>

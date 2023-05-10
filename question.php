@@ -10,7 +10,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Make a question</title>
+
+    <link rel="stylesheet" href="question.css">
 </head>
 <body>
     <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
@@ -18,13 +20,17 @@
         <textarea name="title" id="title" rows="1" cols="40"></textarea><br>
         
         <label for="message">Message:</label><br>
-        <textarea name="question" id="question" rows="4" cols="40"></textarea><br>
+        <textarea name="question" id="question" rows="8" cols="40"></textarea><br>
         
         <button type="submit" name="submit" value="submit">Submit Question</button>
 
-        <a href="question.php">
-            <button>Return</button>
+
+        <a href="homepage.html">
+            <button type="button">Return</button>
         </a>
+
+        <button type="button" onclick="window.location.href = 'mainpage.php';">Go to Another Page</button>
+
     </form>
 
 </body>

@@ -38,7 +38,8 @@
             <h1>Login</h1>
             <input type="text" name="user" placeholder="username">
             <input type="password" name="pass" placeholder="Password">
-            <button type="submit" name="login">Sign In</button>
+            <button type="submit" name="login" value="login">Sign In</button>
+            <button type="submit" id ="visitor" name="visitor" value="visitor">Continue as Visitor</button>
             </form>
         </div>
 
@@ -47,17 +48,13 @@
         <div class="overlay-panel overlay-left">
             <h1 class="title">Welcome <br> back!</h1>
             <p>If you already have an account, login here.</p>
-            <button class="ghost" id="login">Login
-            <i class="lni lni-arrow-left login"></i>
-            </button>
+            <button class="ghost" id="login">Login</button>
         </div>
 
         <div class="overlay-panel overlay-right">
             <h1 class="title">Create a new <br> account now!</h1>
             <p>If you don't have an account yet, create one here.</p>
-            <button class="ghost" id="register">Register
-            <!--<i class="lni lni-arrow-right register"></i>-->
-            </button>
+            <button class="ghost" id="register">Register</button>
         </div>
     
     </div>
@@ -145,6 +142,12 @@
                 }
             }
         }
+    }
+
+    // check if the continue as visitor button was clicked
+    if (isset($_POST["visitor"])) {
+        $_SESSION["id"] = -1;
+        header("Location: mainpage.php");
     }
 
     // Close the database connection.
