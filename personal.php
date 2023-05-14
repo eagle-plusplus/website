@@ -42,6 +42,8 @@
             </div>
         </form>
     </div>
+
+    <script src="cookie.js"></script>
 </body>
 </html>
 

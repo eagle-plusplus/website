@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    background-color: #7ebfb3;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    overflow: scroll;
+    height: 100vh;
+    margin: 0;
+
+    color: #194759;
+
+}
+
+.qa{
+    border-radius: 25px;
+    margin: 80px;
+    padding: 15px;
+
+    background-color: #ebf2f1;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    max-width: 100%;
+    min-height: 200px;
+
+    width: 70%;
+}
+
+textarea {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.ans{
+    width: 70%;
+    margin: 10px;
+}
+
+button {
+    position: relative;
+    border-radius: 20px;
+    border: 1px solid #194759;
+    background-color: #194759;
+    color: #ebf2f1;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 15px;
+    margin: 15px;
+    letter-spacing: 1px;
+    transition: 0.4s ease-in-out;
+
+    width: 300px;
+}
+  
+button:hover {
+    letter-spacing: 3px;
+}
+  
+button:active {
+    transform: scale(0.95);
+    letter-spacing: 0.9px;
+    transition: 0.15s ease-in-out;
+}
+  
+  button:focus {
+    outline: none;
+}
+
+p{
+    font-size: 20px;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answers > * {
+    border-radius: 25px;
+    margin: 10px;
+    padding: 15px;
+
+    background-color: #ebf2f1;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    max-width: 80%;
+}

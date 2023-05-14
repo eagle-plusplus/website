@@ -9,7 +9,7 @@
 
     if (mysqli_num_rows($result1) > 0) {
         $xml = new XMLWriter;
-        $xml->openUri("php://output");
+        $xml->openMemory();
         $xml->startDocument();
         $xml->setIndent(true);
 
@@ -36,9 +36,9 @@
 
                     if (mysqli_num_rows($result2) > 0){
                         while ($row2 = mysqli_fetch_assoc($result2)){
-                            
+
                             $xml->startElement("answer");
-                                
+
                                 $xml->startElement("mainbody");
                                 $xml->writeRaw($row2["atext"]);
                                 $xml->endElement();
@@ -62,21 +62,21 @@
         }
 
         $xml->endElement();
-        header("Content-type: text/xml");
+        $xml->endDocument();
 
-        //$xml->flush();
-        
-        header("Content-Disposition: attachment; filename=questions.xml");
+        $filename = "questions.xml";
+
+        // Set appropriate headers for download
+        header("Content-type: application/octet-stream");
+        header("Content-Disposition: attachment; filename=\"$filename\"");
         header("Pragma: no-cache");
         header("Expires: 0");
 
-        
-        $xml->outputMemory();
+        // Output the generated XML
+        echo $xml->outputMemory();
+        exit();
 
     } else {
         echo "No data in Database!";
     }
 ?>
-
-
-

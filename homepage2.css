@@ -61,8 +61,21 @@ p{
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-button.re {
+up {
   position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px; /* Set a specific width for the box */
+  height: 100px; /* Set a specific height for the box */
+  background-color: red;
+  color: white;
+  padding: 10px;
+  transform: translate(-50%, 50%);
+
+}
+
+button.re {
+  /*position: absolute;*/
   border-radius: 20px;
   border: 1px solid #194759;
   background-color: #194759;
@@ -84,14 +97,3 @@ button.re:active {
     letter-spacing: 0.9px;
     transition: 0.15s ease-in-out;
 }
-
-#b1{
-  top: 0;
-  right: 0;
-}
-
-#b2{
-  top: 0;
-  left: 0;
-}
-

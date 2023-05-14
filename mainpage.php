@@ -2,6 +2,44 @@
     session_start();
 
     include("database.php");
+
+    $sid = $_SESSION["id"];
+
+    if (isset($_POST["newq"])){
+        if ($sid > 0){
+            header("Location: question.php");
+        }else{
+            echo "<script>";
+            echo "alert('You cannot ask a question as a visitor. Please Sign in.');";
+            echo "</script>";
+        }
+    }
+
+    if (isset($_POST["personal"])){
+        if ($sid > 0){
+            header("Location: personal.php");
+        }else{
+            echo "<script>";
+            echo "alert('You cannot edit personal information as a visitor. Please Sign in.');";
+            echo "</script>";
+        }
+    }
+
+    if (isset($_POST["xml"])){
+        if ($sid > 0){
+            header("Location: xmlmaker.php");
+        }else{
+            echo "<script>";
+            echo "alert('You cannot download data in XML form as a visitor. Please Sign in.');";
+            echo "</script>";
+        }
+    }
+
+    if (isset($_POST["logout"])) {
+        session_destroy(); // Destroy the session
+        header("Location: index.php");
+        exit(); // Terminate the script execution
+    }
 ?>
 
 <!DOCTYPE html>
@@ -12,11 +50,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mainpage</title>
 
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="mainpage3.css">
 </head>
 <body>
 
-    <div class="main-buttons">
+    <div class="mainb">
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
             <button type="submit" name="newq" >Make a question</button>
         </form>
@@ -25,10 +63,17 @@
             <button type="submit" name="myquestion" value="myquestion" >My questions</button>
         </form>
     
-        <button type="button" onclick="window.location.href = 'personal.php';">Personal information</button>
+        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+            <button type="submit" name="personal" >Personal information</button>
+        </form>
 
-        <button type="button" onclick="window.location.href = 'xmlmaker.php';">Download data in XML</button>
+        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+            <button type="submit" name="xml" >Download data in XML</button>
+        </form>
 
+        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+            <button type="submit" name="logout" >Logout</button>
+        </form>
     </div>
 
     <div class="top-bar">
@@ -37,31 +82,37 @@
         </h1>
     </div>
     <div class="main">
-        <?php if(empty($_GET["search"]) && empty($_GET["myquestion"])) : ?>
-            <script>
-                window.onload = function() {
-                <?php
-                    $sql = "SELECT * FROM QUESTIONS";
-                    $result = mysqli_query($conn, $sql);
+        <?php if(empty($_GET["search"]) && empty($_GET["myquestion"])) : 
+            $sql = "SELECT * FROM QUESTIONS t JOIN USERS u ON t.uid = u.id";
+            $result = mysqli_query($conn, $sql);
 
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $title = $row["title"];
-                            echo "var link = document.createElement('a');";
-                            echo "link.href = 'question-details.php?qid=" . $row["qid"] . "';";
-                            echo "link.textContent = '" . $title . "';";
-                            echo "document.querySelector('.main').appendChild(link);";
-                            echo "document.querySelector('.main').appendChild(document.createElement('br'));";
-                        }
-                    } else {
-                        echo "var paragraph = document.createElement('p');";
-                        echo "paragraph.textContent = 'No results';";
-                        echo "document.body.appendChild(paragraph);";
-                    }
-                ?>
+            if (mysqli_num_rows($result) > 0) {
+                echo "<script>";
+                echo "window.onload = function() {";
+                echo "var mainDiv = document.querySelector('.main');";
+                echo "mainDiv.innerHTML = '';"; // Clear existing content
+                
+                $i = 1;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $username = $row["username"];
+                    $title = $row["title"];
+                    $date = $row["qdate"];
+                    
+                    echo "var link = document.createElement('a');";
+                    echo "link.href = 'question-details.php?qid=" . $row["qid"] . "';";
+                    echo "link.textContent = '" . $i . ") (" . $date . ") The user " . $username . " asked: " . $title . "';";
+                    echo "mainDiv.appendChild(link);";
+                    echo "mainDiv.appendChild(document.createElement('br'));";
+
+                    $i += 1;
+                }
+
+                echo "}";
+                echo "</script>";
+            } else {
+                echo "No results";
             }
-            </script>
-        <?php endif; ?>
+        endif; ?>
     </div>
     
     <div class="search">
@@ -75,24 +126,11 @@
         </form>
     </div>
 
+    <script src="cookie.js"></script>
 </body>
 </html>
 
 <?php
-
-    $sid = $_SESSION["id"];
-    //echo $sid;
-
-    if (isset($_POST["newq"])){
-        if ($sid > 0){
-            header("Location: question.php");
-        }else{
-            echo "<script>";
-            echo "alert('You cannot ask a question as a visitor. Please Sign in.');";
-            echo "</script>";
-        }
-    }
-
     if (isset($_GET["myquestion"])){
         if ($sid > 0){
 

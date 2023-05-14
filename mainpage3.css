@@ -13,15 +13,10 @@ body {
     font-family: "Poppins", sans-serif;
     overflow: hidden;
     height: 100vh;
+    margin: 0;
 
     color: #194759;
 
-}
-
-.main-buttons{
-    display: flex;
-    
-    border: 10px solid;
 }
 
 button {
@@ -32,8 +27,12 @@ button {
     color: #ebf2f1;
     font-size: 15px;
     font-weight: 700;
-    margin: 10px;
-    padding: 12px 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    /*padding: 12px 80px;*/
+    padding: 15px;
     letter-spacing: 1px;
     transition: 0.4s ease-in-out;
 
@@ -57,11 +56,10 @@ button:active {
 .main{
     background-color: #ebf2f1;
     display: flex;
-    /*justify-content: center;*/
     flex-direction: column;
     padding: 50px;
-    height: 70%;
-    width: 85%;
+    height: 67%;
+    width: 83%;
     
     border-radius: 25px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -79,11 +77,17 @@ button:active {
     font-weight: 700;
     letter-spacing: -1.5px;
     margin: 10px;
-  
-
-    font-size: 30px;
-    line-height: 45px;
+    font-size: 28px;
+    line-height: 30px;
     text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
+}
+
+h3{
+    margin: 10px;
+}
+
+.search{
+    margin: 10px;
 }
 
 input {
@@ -91,6 +95,20 @@ input {
     border-radius: 10px;
     border: none;
     padding: 12px 15px;
-    margin: 8px 0;
+    margin: 8px 5px;
     width: 300px;
+}
+
+.mainb {
+    display: flex; 
+    justify-content: space-between; 
+    width:100%; 
+    top:0; 
+    margin: 0; 
+    padding: 0;
+    align-items: center;
+    background-color: #ebf2f1;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
 }

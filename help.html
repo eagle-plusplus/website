@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help</title>
+
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+    <button id="b1" class="re" type="button" onclick="window.location.href = 'http://localhost/website/index.php';">Join the community</button>
+
+    <button id="b2" class="re" type="button" onclick="window.location.href = 'homepage.html';">Homepage</button>
+
+    <button id="theme-btn" type="button">Change Theme</button>
+
+    <h1>What do you need help with?</h1>
+    
+    <button class="accordion">How to make a question?</button>
+    <div class="panel">
+        <ol>
+            <li>Click the "Make a question" button. Note: You need to be signed in to make a question!</li>
+            <li>Fill in the question's title and main body.</li>
+            <li>Once you have filled in all the required fields, find the "Submit" button on the form. Click on it to submit your question.</li>
+            <li>Your question has been submited!</li>
+        </ol>          
+    </div>
+
+    <button class="accordion">How to change my personal information?</button>
+    <div class="panel">
+        <ol>
+            <li>Locate the "Personal Information" button.</li>
+            <li>A form will appear with your current personal details pre-filled. Update the fields as needed:</li>
+                <ol>
+                    <li>First Name: Enter your new first name in the corresponding field.</li>
+                    <li>Last Name: Enter your new last name in the corresponding field.</li>
+                    <li>Username: Enter your new desired username in the corresponding field.</li>
+                    <li>Email: Enter your new email address in the corresponding field.</li>
+                    <li>Password: Enter your new password in the corresponding field.</li>
+                </ol>
+            <li>Review the changes you made to ensure they are correct.</li>
+            <li>Click the "Save Changes" button to submit the updated information.</li>
+        </ol>                 
+    </div>
+
+    <button class="accordion">How to delete my account?</button>
+    <div class="panel">
+        <ol>
+            <li>Log in to your account.</li>
+            <li>Navigate to the account settings by clicking the "Personal Information" button.</li>
+            <li>Click on the "Delete Account" option.</li>
+            <li>Verify that your account has been successfully deleted by trying to log in again or visiting your profile page.</li>
+        </ol>              
+    </div>
+
+    <button class="accordion">How to see my questions?</button>
+    <div class="panel">
+        <ol>
+            <li>Click the "My questions" button. Note: You need to be signed in to see your questions!</li>
+            <li>Your qestions will appear in the main box.</li>
+        </ol>          
+    </div>
+
+    <button class="accordion">How to download the database data?</button>
+    <div class="panel">
+        <ol>
+            <li>Locate the "Download data in XML" option on the page.</li>
+            <li>Wait for the download to complete. The duration may vary depending on the size of the data.</li>
+            <li>Once the download is finished, locate the downloaded XML file in the destination folder.</li>
+            <li>You can now use the downloaded XML file for further processing, analysis, or storage.</li>
+        </ol>       
+    </div>
+
+    <button class="accordion">How to search questions?</button>
+    <div class="panel">
+        <ol>
+            <li>Locate the search form.</li>
+            <li>Enter the desired search criteria in the search input field.</li>
+            <li>If you want to search by the user who made the question:
+              <ul>
+                <li>Enter the username or name of the user in the search input field.</li>
+              </ul>
+            </li>
+            <li>If you want to search by the submission date of the question:
+              <ul>
+                <li>Enter the date or date range in the search input field.</li>
+              </ul>
+            </li>
+            <li>If you want to search by the question's main body or title:
+              <ul>
+                <li>Enter relevant keywords or phrases related to the question in the search input field.</li>
+              </ul>
+            </li>
+            <li>Click the "Search" button or press the "Enter" key to initiate the search.</li>
+            <li>Wait for the search results to be displayed.</li>
+            <li>Review the search results and click on a question to view its details if desired.</li>
+          </ol> 
+    </div>
+
+    <button class="accordion">How to logout?</button>
+    <div class="panel">
+        <ol>
+            <li>Click the "Logout" button.</li>
+        </ol>          
+    </div>
+
+    <script src="homepage.js"></script>
+    <script src="cookie.js"></script>
+</body>
+</html>

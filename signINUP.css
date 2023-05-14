@@ -6,7 +6,7 @@
 
 body {
   display: flex;
-  background-color: #7ebfb3;
+  /*background-color: #7ebfb3;*/
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -201,4 +201,9 @@ input {
 
 .container.right-panel-active .overlay-right {
   transform: translateX(20%);
+}
+
+.th{
+  margin: 0;
+  height: 10%;
 }

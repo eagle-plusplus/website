@@ -18,6 +18,7 @@
 </head>
 
 <body>
+
     <div class="container" id="container">
         
         <div class="form-container register-container">
@@ -60,13 +61,12 @@
     </div>
   
     <script src="signINUP.js"></script>
-  
+    <script src="cookie.js"></script>
   </body>
 
 </html>
 
 <?php
-
     // check if the register button was clicked.
     if (isset($_POST["register"])){
 
