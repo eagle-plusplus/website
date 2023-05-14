@@ -2,9 +2,11 @@
     session_start();
 
     include("database.php");
+    require('Simplepush.php');
 
     // Retrieve the question ID from the URL parameter
     $questionID = $_GET['qid'];
+    $not = $_SESSION["notification"];
 ?>
 
 <!DOCTYPE html>
@@ -51,30 +53,32 @@
     </div>
 
     <div class="answers">
-        <script>
-                window.onload = function() {
-                <?php
-                    $sql = "SELECT * FROM ANSWERS a JOIN USERS u ON a.uid = u.id WHERE a.qid = '$questionID'";
-                    $result = mysqli_query($conn, $sql);
+    <script>
+        window.onload = function() {
+            <?php
+                $sql = "SELECT * FROM ANSWERS a JOIN USERS u ON a.uid = u.id WHERE a.qid = '$questionID'";
+                $result = mysqli_query($conn, $sql);
 
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $text = $row["atext"];
-                            $username = $row["username"];
-                            echo "var paragraph = document.createElement('p');";
-                            echo "paragraph.textContent = 'User $username answered: $text';";
-                            echo "document.querySelector('.answers').appendChild(paragraph);";
-                            echo "document.querySelector('.answers').appendChild(document.createElement('br'));";
-                        }
-                    } else {
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $aid = $row["aid"];
+                        $text = $row["atext"];
+                        $username = $row["username"];
                         echo "var paragraph = document.createElement('p');";
-                        echo "paragraph.textContent = 'No results';";
-                        echo "document.body.appendChild(paragraph);";
+                        echo "paragraph.textContent = 'User $username answered: $text';";
+                        echo "paragraph.setAttribute('id', '$aid');"; 
+                        echo "document.querySelector('.answers').appendChild(paragraph);";
+                        echo "document.querySelector('.answers').appendChild(document.createElement('br'));";
                     }
-                ?>
-            }
-        </script>
-    </div>
+                } else {
+                    echo "var paragraph = document.createElement('p');";
+                    echo "paragraph.textContent = 'No results';";
+                    echo "document.body.appendChild(paragraph);";
+                }
+            ?>
+        }
+    </script>
+</div>
 
 </body>
 </html>
@@ -93,6 +97,14 @@
                     VALUES ('$answer', '$questionID', '$uid')";
 
             mysqli_query($conn, $sql);
+
+            $aid = mysqli_insert_id($conn);
+
+            $url = "http://localhost/website/question-details.php?qid=" . $questionID . "#" . $aid;
+
+            //echo $url;
+
+            $ret = Simplepush::send($not, "REPLY", "Use this link to access the reply: " . $url);
         }
 
     }

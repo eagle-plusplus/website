@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    <button id="b1" type="button" onclick="window.location.href = 'homepage.html';">Homepage</button>
 
     <div class="container" id="container">
         
@@ -30,6 +31,7 @@
                 <input type="password" name="password" placeholder="Password">
                 <input type="password" name="rpassword" placeholder="Re-type Password">
                 <input type="email" name="email" placeholder="email">
+                <input type="password" name="notification" placeholder="Simlepush ID">
                 <button type="submit" name="register" value="register">Sign Up</button>
             </form>
         </div>
@@ -77,20 +79,31 @@
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
         $rpassword = filter_input(INPUT_POST, "rpassword", FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
+        $notification = filter_input(INPUT_POST, "notification", FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // Check if any of the input fields are empty.
+        // Check if any of the required fields are empty.
         if (empty($fname)||empty($lname)||empty($username)||empty($password)||empty($rpassword)||empty($email)){
-            echo "Some credentials are missing!";
+            echo "Some required credentials are missing!";
         }else{
             // Check if the password and repeated password fields match.
             if ($password == $rpassword){
+
+                if (empty($notification)){
+                    $notification = null;
+                }
 
                 // Hash the password using the default algorithm.
                 $hash = password_hash($password, PASSWORD_DEFAULT);
 
                 // Create a SQL statement to insert the user's information into the "USERS" table.
-                $sql = "INSERT INTO USERS (fname, lname, username, password, email)
-                        VALUES ('$fname', '$lname', '$username', '$hash', '$email')";
+                $sql = "INSERT INTO USERS (fname, lname, username, password, email, notification)
+                VALUES ('$fname', '$lname', '$username', '$hash', '$email', ";
+
+                if ($notification === null) {
+                    $sql .= "NULL)";
+                } else {
+                    $sql .= "'$notification')";
+                }
 
                 try{
                     // Execute the SQL query and display success message
@@ -135,6 +148,7 @@
                     $_SESSION["user"] = $row["username"];
                     $_SESSION["id"] = $row["id"];
                     $_SESSION["email"] = $row["email"];
+                    $_SESSION["notification"] = $row["notification"];
 
                     header("Location: mainpage.php");
                 } else {

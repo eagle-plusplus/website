@@ -13,6 +13,7 @@ body {
     font-family: "Poppins", sans-serif;
     overflow: hidden;
     height: 100vh;
+    position: relative;
 }
 
 textarea {
@@ -82,3 +83,11 @@ button:active {
   button:focus {
     outline: none;
 }
+
+#ret{
+    top: 0;
+    right: 0;
+
+    position: absolute;
+}
+
