@@ -1,9 +1,12 @@
+/* Importing the Poppins font from Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 
+/* Box sizing for consistent element sizing */
 * {
     box-sizing: border-box;
 }
 
+/* Styling for the body */
 body {
     display: flex;
     background-color: #7ebfb3;
@@ -13,24 +16,22 @@ body {
     overflow: scroll;
     height: 100vh;
     margin: 0;
-
     color: #194759;
-
 }
 
-.qa{
+/* Styling for the question and answer container */
+.qa {
     border-radius: 25px;
     margin: 80px;
     padding: 15px;
-
     background-color: #ebf2f1;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     max-width: 100%;
     min-height: 200px;
-
     width: 70%;
 }
 
+/* Styling for the textarea */
 textarea {
     background-color: #e0e0e0;
     border-radius: 10px;
@@ -40,11 +41,13 @@ textarea {
     width: 100%;
 }
 
-.ans{
+/* Styling for the answer container */
+.ans {
     width: 70%;
     margin: 10px;
 }
 
+/* Styling for buttons */
 button {
     position: relative;
     border-radius: 20px;
@@ -57,28 +60,29 @@ button {
     margin: 15px;
     letter-spacing: 1px;
     transition: 0.4s ease-in-out;
-
     width: 300px;
 }
-  
+
 button:hover {
     letter-spacing: 3px;
 }
-  
+
 button:active {
     transform: scale(0.95);
     letter-spacing: 0.9px;
     transition: 0.15s ease-in-out;
 }
-  
-  button:focus {
+
+button:focus {
     outline: none;
 }
 
-p{
+/* Styling for paragraphs */
+p {
     font-size: 20px;
 }
 
+/* Styling for the answers container */
 .answers {
     display: flex;
     flex-direction: column;
@@ -89,7 +93,6 @@ p{
     border-radius: 25px;
     margin: 10px;
     padding: 15px;
-
     background-color: #ebf2f1;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     max-width: 80%;

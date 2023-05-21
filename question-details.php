@@ -1,12 +1,14 @@
 <?php
     session_start();
 
+    // Include the database connection file
     include("database.php");
+
+    // Include the Simplepush library file
     require('Simplepush.php');
 
     // Retrieve the question ID from the URL parameter
     $questionID = $_GET['qid'];
-    $not = $_SESSION["notification"];
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +17,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question</title>
+    <title>Question and Answers</title>
 
     <link rel="stylesheet" href="question-details.css">
 </head>
@@ -56,14 +58,18 @@
     <script>
         window.onload = function() {
             <?php
-                $sql = "SELECT * FROM ANSWERS a JOIN USERS u ON a.uid = u.id WHERE a.qid = '$questionID'";
+                // Perform a database query to fetch the answers for the question
+                $sql = "SELECT * FROM ANSWERS a JOIN USERS u ON a.uid = u.id WHERE a.qid = '$questionID' ORDER BY a.aid DESC";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
+                    // Iterate over the result set and display each answer
                     while ($row = mysqli_fetch_assoc($result)) {
                         $aid = $row["aid"];
                         $text = $row["atext"];
                         $username = $row["username"];
+
+                        // Create a paragraph element to display the answer
                         echo "var paragraph = document.createElement('p');";
                         echo "paragraph.textContent = 'User $username answered: $text';";
                         echo "paragraph.setAttribute('id', '$aid');"; 
@@ -71,6 +77,7 @@
                         echo "document.querySelector('.answers').appendChild(document.createElement('br'));";
                     }
                 } else {
+                    // Display a message if no answers are found
                     echo "var paragraph = document.createElement('p');";
                     echo "paragraph.textContent = 'No results';";
                     echo "document.body.appendChild(paragraph);";
@@ -80,19 +87,29 @@
     </script>
 </div>
 
+<script src="cookie.js"></script>
 </body>
 </html>
 
 <?php
-
-    if (isset($_POST["submit"])){
+    // Check if the form has been submitted
+    if (isset($_POST["submit"])) {
         $answer = filter_input(INPUT_POST, "answer", FILTER_SANITIZE_SPECIAL_CHARS);
 
         $uid = $_SESSION["id"];
 
-        if (empty($answer)){
-            echo "You must fill the answer field!";
-        }else{
+        //check if user is connected
+        if ($uid == -1) {
+            echo "<script>";
+            echo "alert('If you would like to answer this question, sign in first');";
+            echo "</script>";
+        }
+
+        // Validate the answer field
+        if (empty($answer)) {
+            echo "<p style='color: red';>You must fill the answer field!</p>";
+        } else {
+            // Insert the answer into the database
             $sql = "INSERT INTO ANSWERS (atext, qid, uid)
                     VALUES ('$answer', '$questionID', '$uid')";
 
@@ -100,14 +117,28 @@
 
             $aid = mysqli_insert_id($conn);
 
-            $url = "http://localhost/website/question-details.php?qid=" . $questionID . "#" . $aid;
+            $sql1 = "SELECT u.notification FROM USERS u JOIN QUESTIONS q ON u.id = q.uid WHERE q.qid = '$questionID'";
 
-            //echo $url;
+            $result = mysqli_query($conn, $sql1);
 
-            $ret = Simplepush::send($not, "REPLY", "Use this link to access the reply: " . $url);
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+            
+                $not = $row["notification"];
+            
+                // Construct the URL to the question details page with the answer ID as a fragment
+                $url = "http://localhost/website/question-details.php?qid=" . $questionID . "#" . $aid;
+            
+                // Send a notification to the user with the reply link
+                $ret = Simplepush::send($not, "REPLY", "Use this link to access the reply: " . $url);
+            }
+
+            // Redirect to the URL after sending the notification
+            header("Location: $url");
+            exit(); // Make sure to exit after the redirect
         }
-
     }
 
     mysqli_close($conn);
 ?>
+

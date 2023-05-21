@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 
+/* Global styles */
 body {
     display: flex;
     background-color: #7ebfb3;
@@ -13,16 +14,15 @@ body {
     position: relative;
 }
 
-.edit-box{
+/* Edit box styles */
+.edit-box {
     background-color: #ebf2f1;
     display: flex;
-    /*justify-content: center;*/
     flex-direction: column;
     align-items: center;
     padding: 50px;
-    height: 70%;
-    width: 768px;
-    
+    height: 80%;
+    width: 868px;
     border-radius: 25px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     overflow: hidden;
@@ -30,6 +30,7 @@ body {
     min-height: 500px;
 }
 
+/* Form styles */
 form {
     background-color: #ebf2f1;
     display: flex;
@@ -39,6 +40,7 @@ form {
     padding: 0 50px;
 }
 
+/* Button styles */
 button {
     position: relative;
     border-radius: 20px;
@@ -53,22 +55,21 @@ button {
     transition: 0.4s ease-in-out;
 }
 
-
-  
 button:hover {
     letter-spacing: 3px;
 }
-  
+
 button:active {
     transform: scale(0.95);
     letter-spacing: 0.9px;
     transition: 0.15s ease-in-out;
 }
-  
+
 button:focus {
     outline: none;
 }
 
+/* Input styles */
 input {
     background-color: #e0e0e0;
     border-radius: 10px;
@@ -76,4 +77,8 @@ input {
     padding: 12px 15px;
     margin: 8px 0;
     width: 300px;
+}
+
+.edit-buttons{
+    display: flex;
 }

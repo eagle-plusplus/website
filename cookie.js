@@ -11,10 +11,10 @@ document.getElementById('theme-btn').addEventListener('click', changeTheme);
 function setBackgroundBasedOnMode() {
   var cookieValue = getCookie('mode');
   if (cookieValue === 'dark') {
-    // Set the background color to grey for 'dark' mode
+    // Set the background color for 'dark' mode
     document.body.style.backgroundColor = '#121212';
   } else if (cookieValue === 'light') {
-    // Set the background color to blue for 'light' mode
+    // Set the background color for 'light' mode
     document.body.style.backgroundColor = '#7ebfb3';
   } else {
     // If no cookie is set, default to blue and create the 'mode' cookie

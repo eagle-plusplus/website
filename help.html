@@ -6,27 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Help</title>
 
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="homepage2.css">
 </head>
 <body>
-    <button id="b1" class="re" type="button" onclick="window.location.href = 'http://localhost/website/index.php';">Join the community</button>
 
-    <button id="b2" class="re" type="button" onclick="window.location.href = 'homepage.html';">Homepage</button>
+    <div class="mainb">    
+        <!-- Button to go to the homepage -->
+        <button id="b2" class="re" type="button" onclick="window.location.href = 'homepage.html';">Homepage</button>
+    
+        <!-- Button to change the theme -->
+        <button id="theme-btn" class="re" type="button">Change Theme</button>
 
-    <button id="theme-btn" class="re" type="button">Change Theme</button>
+         <!-- Button to join the community -->
+         <button id="b1" class="re" type="button" onclick="window.location.href = 'http://localhost/website/index.php';">Join the community</button>
+    </div>    
 
     <h1>What do you need help with?</h1>
     
+    <!-- FAQ section -->
+
+    <!-- FAQ item: How to make a question? -->
     <button class="accordion">How to make a question?</button>
     <div class="panel">
         <ol>
             <li>Click the "Make a question" button. Note: You need to be signed in to make a question!</li>
             <li>Fill in the question's title and main body.</li>
             <li>Once you have filled in all the required fields, find the "Submit" button on the form. Click on it to submit your question.</li>
-            <li>Your question has been submited!</li>
+            <li>Your question has been submitted!</li>
         </ol>          
     </div>
 
+    <!-- FAQ item: How to change my personal information? -->
     <button class="accordion">How to change my personal information?</button>
     <div class="panel">
         <ol>
@@ -44,6 +54,7 @@
         </ol>                 
     </div>
 
+    <!-- FAQ item: How to delete my account? -->
     <button class="accordion">How to delete my account?</button>
     <div class="panel">
         <ol>
@@ -54,6 +65,7 @@
         </ol>              
     </div>
 
+    <!-- FAQ item: How to see my questions? -->
     <button class="accordion">How to see my questions?</button>
     <div class="panel">
         <ol>
@@ -62,6 +74,7 @@
         </ol>          
     </div>
 
+    <!-- FAQ item: How to download the database data? -->
     <button class="accordion">How to download the database data?</button>
     <div class="panel">
         <ol>
@@ -72,6 +85,7 @@
         </ol>       
     </div>
 
+    <!-- FAQ item: How to search questions? -->
     <button class="accordion">How to search questions?</button>
     <div class="panel">
         <ol>
@@ -98,6 +112,7 @@
           </ol> 
     </div>
 
+    <!-- FAQ item: How to logout? -->
     <button class="accordion">How to logout?</button>
     <div class="panel">
         <ol>
@@ -105,6 +120,7 @@
         </ol>          
     </div>
 
+    <!-- JavaScript files -->
     <script src="homepage.js"></script>
     <script src="cookie.js"></script>
 </body>

@@ -1,101 +1,114 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins");
+@import url("https://fonts.googleapis.com/css2?family=Poppins"); /* Importing the Google Fonts library */
 
+/* Styling for the body */
 body {
     display: flex;
-    background-color: #7ebfb3;
-    color: #194759;
+    background-color: #7ebfb3; /* Background color */
+    color: #194759; /* Text color */
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: "Poppins", sans-serif;
-    /*overflow: hidden;*/
+    font-family: "Poppins", sans-serif; /* Setting the font family */
     height: 100vh;
     position: relative;
 }
 
 h1 {
-  font-size: 45px;
-  margin-bottom: 1%;
+    font-size: 45px; /* Font size for heading */
+    margin-bottom: 1%; /* Margin bottom for heading */
 }
 
-p{
-    padding: 0 20px;
+p {
+    padding: 0 20px; /* Padding for paragraphs */
 }
 
+/* Styling for the accordion */
 .accordion {
-  background-color: #ebf2f1;
-  cursor: pointer;
-  padding: 18px;
-  width: 80%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    background-color: #ebf2f1; /* Background color */
+    cursor: pointer;
+    padding: 18px;
+    width: 80%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); /* Box shadow effect */
 }
 
 .active,
 .accordion:hover {
-  background-color: #a7f2e4;
+    background-color: #a7f2e4; /* Background color for active or hovered accordion */
 }
 
 .accordion:after {
-  content: '\002B';
-  color: #777;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
+    content: '\002B'; /* Plus symbol for closed accordion */
+    color: #777; /* Color of the plus symbol */
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
 }
 
 .active:after {
-  content: "\2212";
+    content: "\2212"; /* Minus symbol for open accordion */
 }
 
 .panel {
-  background-color: #ebf2f1;
-  max-height: 0;
-  width: 80%;
-  overflow: scroll;
-  transition: max-height 0.2s ease-out;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    background-color: #ebf2f1; /* Background color for panel */
+    max-height: 0;
+    width: 80%;
+    overflow: scroll;
+    transition: max-height 0.2s ease-out;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); /* Box shadow effect */
 }
 
+/* Styling for the buttons */
 button.re {
-  position: absolute;
-  border-radius: 20px;
-  border: 1px solid #194759;
-  background-color: #194759;
-  color: #ebf2f1;
-  font-size: 15px;
-  font-weight: 700;
-  margin: 10px;
-  padding: 12px 80px;
-  letter-spacing: 1px;
-  transition: 0.4s ease-in-out;
+    border-radius: 20px;
+    border: 1px solid #194759; /* Border color */
+    background-color: #194759; /* Background color */
+    color: #ebf2f1; /* Text color */
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px;
+    padding: 12px 80px;
+    letter-spacing: 1px;
+    transition: 0.4s ease-in-out;
 }
 
 button.re:hover {
-    letter-spacing: 2px;
+    letter-spacing: 2px; /* Increased letter spacing on hover */
 }
 
 button.re:active {
-    transform: scale(0.95);
+    transform: scale(0.95); /* Slight scale down effect on button press */
     letter-spacing: 0.9px;
     transition: 0.15s ease-in-out;
 }
 
-#b1{
-  top: 0;
-  right: 0;
+/*#b1 {
+    top: 0;
+    right: 0;
 }
 
-#b2{
-  top: 0;
-  left: 0;
+#b2 {
+    top: 0;
+    left: 0;
 }
 
-#theme-btn{
-  top: 0;
-}
+#theme-btn {
+    top: 0;
+}*/
 
+.mainb{
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%; 
+    top: 0; 
+    margin: 0; 
+    padding: 0;
+    align-items: center;
+    background-color: #ebf2f1;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}

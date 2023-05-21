@@ -136,9 +136,7 @@
 
             $sql = "SELECT * FROM QUESTIONS t JOIN USERS u ON t.uid = u.id WHERE u.id = '$sid'";
             $result = mysqli_query($conn, $sql);
-
-            echo $sql;
-
+            
             if (mysqli_num_rows($result) > 0) {
                 echo "<script>";
                 echo "var mainDiv = document.querySelector('.main');";
@@ -200,8 +198,6 @@
             $sql .= " t.qdate LIKE '%$dates%'";
         }
 
-        echo $sql . "<br>";
-
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -229,15 +225,7 @@
             echo "No results";
         }
 
-        /*
-        } else {
-            echo "var paragraph = document.createElement('p');";
-            echo "paragraph.textContent = 'No results';";
-            echo "document.body.appendChild(paragraph);";
-        }*/
-
     }
 
     mysqli_close($conn);
-    //session_destroy();
 ?>
